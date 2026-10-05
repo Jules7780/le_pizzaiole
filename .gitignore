@@ -1,0 +1,5 @@
+# Sources de travail, non publiées
+uploads/
+*-print-*.dc.html
+.thumbnail
+.claude/

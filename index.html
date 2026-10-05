@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:82px;}
+  body{margin:0;background:#FBF9F5 url('images/marble.jpg') center/cover fixed;-webkit-font-smoothing:antialiased;color:#17150F;}
+  img{max-width:100%;display:block;}
+  #burger{display:none;}
+  @media (max-width:899px){
+    #primary-nav{display:none !important;}
+    #burger{display:inline-flex !important;}
+  }
+  @media (min-width:900px){
+    #mobile-menu{display:none !important;}
+  }
+</style>
+</helmet>
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(251,249,245,0.90);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #E7E2D8;">
+  <div style="max-width:1180px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <a href="#top" style="text-decoration:none;display:flex;align-items:center;">
+      <img src="images/logo.png" alt="Le Pizzaiole — Pizzas artisanales cuites au feu de bois" style="height:46px;width:auto;display:block;">
+    </a>
+    <nav id="primary-nav" style="display:flex;gap:32px;align-items:center;">
+      <a href="#carte" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:13px;letter-spacing:0.04em;color:#3a362e;" style-hover="color:#C1352E;">La carte</a>
+      <a href="#emplacements" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:13px;letter-spacing:0.04em;color:#3a362e;" style-hover="color:#C1352E;">Emplacements</a>
+      <a href="#traiteur" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:13px;letter-spacing:0.04em;color:#3a362e;" style-hover="color:#C1352E;">Traiteur 24</a>
+      <a href="#contact" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:13px;letter-spacing:0.04em;color:#3a362e;" style-hover="color:#C1352E;">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="#commander" style="display:inline-flex;align-items:center;background:#C1352E;color:#fff;text-decoration:none;font-family:Archivo;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 20px;border-radius:3px;" style-hover="background:#a62a24;">Commander</a>
+      <button id="burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="width:40px;height:38px;align-items:center;justify-content:center;background:transparent;border:1px solid #d9d3c7;border-radius:3px;cursor:pointer;flex-direction:column;gap:4px;">
+        <span style="width:17px;height:2px;background:#17150F;display:block;"></span>
+        <span style="width:17px;height:2px;background:#17150F;display:block;"></span>
+        <span style="width:17px;height:2px;background:#17150F;display:block;"></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" style="{{ mobileMenuStyle }}">
+    <a href="#carte" onClick="{{ closeMenu }}" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:15px;color:#17150F;padding:10px 0;border-bottom:1px solid #EAE5DB;">La carte</a>
+    <a href="#emplacements" onClick="{{ closeMenu }}" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:15px;color:#17150F;padding:10px 0;border-bottom:1px solid #EAE5DB;">Emplacements</a>
+    <a href="#traiteur" onClick="{{ closeMenu }}" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:15px;color:#17150F;padding:10px 0;border-bottom:1px solid #EAE5DB;">Traiteur 24</a>
+    <a href="#contact" onClick="{{ closeMenu }}" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:15px;color:#17150F;padding:10px 0;">Contact</a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="top" style="scroll-margin-top:82px;padding:calc(clamp(120px,15vh,150px)) 24px clamp(56px,7vw,84px);">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(36px,6vw,72px);align-items:center;">
+    <div style="flex:1 1 430px;min-width:300px;">
+      <div style="display:flex;width:66px;height:5px;border-radius:2px;overflow:hidden;margin-bottom:26px;">
+        <div style="flex:1;background:#1E7A46;"></div><div style="flex:1;background:#EDE7DB;"></div><div style="flex:1;background:#C1352E;"></div>
+      </div>
+      <p style="margin:0 0 18px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#1E7A46;">Pizzeria napolitaine · Le Bizet &amp; Comines</p>
+      <h1 style="margin:0;font-family:'Cormorant Garamond';font-weight:600;font-size:clamp(40px,6vw,66px);line-height:1.04;letter-spacing:-0.01em;color:#17150F;">La vraie pizza napolitaine,<br><span style="font-style:italic;font-weight:500;color:#C1352E;">cuite au feu de bois.</span></h1>
+      <p style="margin:24px 0 0;max-width:480px;font-family:Archivo;font-weight:400;font-size:17px;line-height:1.62;color:#57534a;">Faite maison, cuisinée sur place, avec des produits frais venus des terres italiennes. Deux adresses, une même passion du bon.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;">
+        <a href="#commander" style="display:inline-flex;align-items:center;background:#C1352E;color:#fff;text-decoration:none;font-family:Archivo;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;padding:15px 28px;border-radius:3px;" style-hover="background:#a62a24;">Commander en ligne</a>
+        <a href="#carte" style="display:inline-flex;align-items:center;background:transparent;color:#17150F;text-decoration:none;font-family:Archivo;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;padding:13.5px 26px;border-radius:3px;border:1.5px solid #17150F;" style-hover="background:#17150F;color:#fff;">Voir la carte</a>
+      </div>
+    </div>
+    <div style="flex:1 1 380px;min-width:290px;position:relative;">
+      <div style="position:relative;border-radius:6px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 34px 64px -28px rgba(23,21,15,0.45);">
+        <img src="images/hero-margherita.jpg" alt="Pizza napolitaine cuite au feu de bois" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="position:absolute;left:-14px;bottom:22px;background:#17150F;color:#fff;padding:12px 18px;border-radius:4px;box-shadow:0 14px 30px -14px rgba(0,0,0,0.5);">
+        <span style="font-family:Archivo;font-weight:700;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#fff;">100&nbsp;% fait maison</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PILIERS ===================== -->
+<section style="background:#17150F;color:#F4F0E7;">
+  <div style="max-width:1180px;margin:0 auto;padding:clamp(46px,5vw,64px) 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(28px,4vw,52px);">
+    <div>
+      <span style="font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-size:34px;color:#C1352E;">01</span>
+      <h3 style="margin:8px 0 8px;font-family:Archivo;font-weight:700;font-size:16px;letter-spacing:0.03em;">Cuit au feu de bois</h3>
+      <p style="margin:0;font-family:Archivo;font-weight:400;font-size:14.5px;line-height:1.6;color:#b8b3a6;">Une cuisson traditionnelle à la flamme, pour une pâte napolitaine légère et parfumée.</p>
+    </div>
+    <div>
+      <span style="font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-size:34px;color:#1E7A46;">02</span>
+      <h3 style="margin:8px 0 8px;font-family:Archivo;font-weight:700;font-size:16px;letter-spacing:0.03em;">Fait maison</h3>
+      <p style="margin:0;font-family:Archivo;font-weight:400;font-size:14.5px;line-height:1.6;color:#b8b3a6;">Pâtes, pizzas et desserts préparés sur place, chaque jour, avec soin.</p>
+    </div>
+    <div>
+      <span style="font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-size:34px;color:#C1352E;">03</span>
+      <h3 style="margin:8px 0 8px;font-family:Archivo;font-weight:700;font-size:16px;letter-spacing:0.03em;">Produits italiens</h3>
+      <p style="margin:0;font-family:Archivo;font-weight:400;font-size:14.5px;line-height:1.6;color:#b8b3a6;">Tomates San Marzano, fior di latte et ingrédients sélectionnés en Italie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CARTE ===================== -->
+<section id="carte" style="scroll-margin-top:82px;padding:clamp(70px,9vw,120px) 24px;">
+  <div style="max-width:1180px;margin:0 auto;">
+    <div style="text-align:center;max-width:640px;margin:0 auto 52px;">
+      <p style="margin:0 0 14px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#C1352E;">La Carte</p>
+      <h2 style="margin:0;font-family:'Cormorant Garamond';font-weight:600;font-size:clamp(34px,5vw,52px);line-height:1.05;color:#17150F;">Nos pizzas signatures</h2>
+      <p style="margin:18px 0 0;font-family:Archivo;font-weight:400;font-size:16px;line-height:1.6;color:#57534a;">Un aperçu de la maison. Base tomates San Marzano &amp; mozzarella fior di latte.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+      <div style="background:#fff;border:1px solid #EAE5DB;border-radius:5px;padding:24px 24px 22px;box-shadow:0 1px 2px rgba(23,21,15,0.03);" style-hover="box-shadow:0 20px 40px -26px rgba(23,21,15,0.35);border-color:#e0d9cb;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
+          <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:17px;color:#17150F;">Pizzaiole</h3>
+          <span style="font-family:'Cormorant Garamond';font-weight:600;font-size:21px;color:#C1352E;white-space:nowrap;">15 €</span>
+        </div>
+        <span style="display:inline-block;margin:9px 0 10px;font-family:Archivo;font-weight:700;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#1E7A46;">La signature</span>
+        <p style="margin:0;font-family:Archivo;font-weight:400;font-size:14px;line-height:1.55;color:#6b665c;">Oignon, parmesan, jambon de Parme, roquette, burrata, olives noires.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #EAE5DB;border-radius:5px;padding:24px;box-shadow:0 1px 2px rgba(23,21,15,0.03);" style-hover="box-shadow:0 20px 40px -26px rgba(23,21,15,0.35);border-color:#e0d9cb;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
+          <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:17px;color:#17150F;">Capra-Miele</h3>
+          <span style="font-family:'Cormorant Garamond';font-weight:600;font-size:21px;color:#C1352E;white-space:nowrap;">14,50 €</span>
+        </div>
+        <p style="margin:12px 0 0;font-family:Archivo;font-weight:400;font-size:14px;line-height:1.55;color:#6b665c;">Chèvre affiné, jambon italien, oignons, miel, olives noires.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #EAE5DB;border-radius:5px;padding:24px;box-shadow:0 1px 2px rgba(23,21,15,0.03);" style-hover="box-shadow:0 20px 40px -26px rgba(23,21,15,0.35);border-color:#e0d9cb;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
+          <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:17px;color:#17150F;">Pistacchio</h3>
+          <span style="font-family:'Cormorant Garamond';font-weight:600;font-size:21px;color:#C1352E;white-space:nowrap;">15,50 €</span>
+        </div>
+        <p style="margin:12px 0 0;font-family:Archivo;font-weight:400;font-size:14px;line-height:1.55;color:#6b665c;">Pesto pistache, mortadelle à la pistache, roquette, éclats de pistache, zeste de citron.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #EAE5DB;border-radius:5px;padding:24px;box-shadow:0 1px 2px rgba(23,21,15,0.03);" style-hover="box-shadow:0 20px 40px -26px rgba(23,21,15,0.35);border-color:#e0d9cb;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
+          <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:17px;color:#17150F;">Diavola</h3>
+          <span style="font-family:'Cormorant Garamond';font-weight:600;font-size:21px;color:#C1352E;white-space:nowrap;">13,50 €</span>
+        </div>
+        <p style="margin:12px 0 0;font-family:Archivo;font-weight:400;font-size:14px;line-height:1.55;color:#6b665c;">Spianatta piccante (chorizo italien), oignons, olives noires.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #EAE5DB;border-radius:5px;padding:24px;box-shadow:0 1px 2px rgba(23,21,15,0.03);" style-hover="box-shadow:0 20px 40px -26px rgba(23,21,15,0.35);border-color:#e0d9cb;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
+          <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:17px;color:#17150F;">Salmone</h3>
+          <span style="font-family:'Cormorant Garamond';font-weight:600;font-size:21px;color:#C1352E;white-space:nowrap;">15 €</span>
+        </div>
+        <p style="margin:12px 0 0;font-family:Archivo;font-weight:400;font-size:14px;line-height:1.55;color:#6b665c;">Crème fraîche, saumon fumé, roquette, aneth, zeste de citron.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #EAE5DB;border-radius:5px;padding:24px;box-shadow:0 1px 2px rgba(23,21,15,0.03);" style-hover="box-shadow:0 20px 40px -26px rgba(23,21,15,0.35);border-color:#e0d9cb;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
+          <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:17px;color:#17150F;">Montagna</h3>
+          <span style="font-family:'Cormorant Garamond';font-weight:600;font-size:21px;color:#C1352E;white-space:nowrap;">15 €</span>
+        </div>
+        <p style="margin:12px 0 0;font-family:Archivo;font-weight:400;font-size:14px;line-height:1.55;color:#6b665c;">Base crème, jambon italien, Fontina D.O.P., rondelles de pommes de terre, oignons.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:40px;">
+      <span style="display:inline-flex;padding:8px 15px;border:1px solid #ddd6c8;border-radius:100px;font-family:Archivo;font-size:11.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#57534a;background:rgba(255,255,255,0.5);">Pizzas</span>
+      <span style="display:inline-flex;padding:8px 15px;border:1px solid #ddd6c8;border-radius:100px;font-family:Archivo;font-size:11.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#57534a;background:rgba(255,255,255,0.5);">Creazione dello Chef</span>
+      <span style="display:inline-flex;padding:8px 15px;border:1px solid #ddd6c8;border-radius:100px;font-family:Archivo;font-size:11.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#57534a;background:rgba(255,255,255,0.5);">Pâtes &amp; Lasagna</span>
+      <span style="display:inline-flex;padding:8px 15px;border:1px solid #ddd6c8;border-radius:100px;font-family:Archivo;font-size:11.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#57534a;background:rgba(255,255,255,0.5);">Per Bambini</span>
+      <span style="display:inline-flex;padding:8px 15px;border:1px solid #ddd6c8;border-radius:100px;font-family:Archivo;font-size:11.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#57534a;background:rgba(255,255,255,0.5);">Desserts</span>
+    </div>
+    <div style="text-align:center;margin-top:30px;">
+      <a href="#commander" style="display:inline-flex;align-items:center;background:#1E7A46;color:#fff;text-decoration:none;font-family:Archivo;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;padding:15px 30px;border-radius:3px;" style-hover="background:#186237;">Voir toute la carte &amp; commander</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DESSERT ACCENT ===================== -->
+<section style="padding:0 24px clamp(70px,9vw,110px);">
+  <div style="max-width:1180px;margin:0 auto;background:#fff;border:1px solid #EAE5DB;border-radius:6px;overflow:hidden;display:flex;flex-wrap:wrap;box-shadow:0 24px 50px -34px rgba(23,21,15,0.4);">
+    <div style="flex:1 1 320px;min-width:280px;min-height:280px;">
+      <img src="images/dessert.webp" alt="Dessert maison" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div style="flex:1 1 360px;min-width:280px;padding:clamp(32px,4vw,56px);display:flex;flex-direction:column;justify-content:center;">
+      <p style="margin:0 0 12px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:#1E7A46;">Et pour finir…</p>
+      <h2 style="margin:0;font-family:'Cormorant Garamond';font-weight:600;font-size:clamp(30px,4vw,44px);line-height:1.06;color:#17150F;">Le tiramisu, <span style="font-style:italic;color:#C1352E;">le vrai, le véritable.</span></h2>
+      <p style="margin:18px 0 0;font-family:Archivo;font-weight:400;font-size:15.5px;line-height:1.62;color:#57534a;max-width:420px;">Nos desserts sont préparés maison : tiramisu, panna cotta au coulis de fruits rouges, mousse au chocolat. Une dolce fin de repas, comme en Italie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EMPLACEMENTS ===================== -->
+<section id="emplacements" style="scroll-margin-top:82px;padding:clamp(70px,9vw,110px) 24px;background:#17150F;color:#F4F0E7;">
+  <a id="commander" style="position:relative;top:-82px;display:block;"></a>
+  <div style="max-width:1180px;margin:0 auto;">
+    <div style="text-align:center;max-width:640px;margin:0 auto 52px;">
+      <p style="margin:0 0 14px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#e0716b;">Nos adresses</p>
+      <h2 style="margin:0;font-family:'Cormorant Garamond';font-weight:600;font-size:clamp(34px,5vw,52px);line-height:1.05;color:#fff;">Deux maisons, <span style="font-style:italic;">une même passion</span></h2>
+      <p style="margin:18px 0 0;font-family:Archivo;font-weight:400;font-size:16px;line-height:1.6;color:#b8b3a6;">Choisissez votre adresse pour commander, réserver ou passer nous voir.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;">
+      <!-- Le Bizet -->
+      <div style="background:#211E17;border:1px solid #35312a;border-radius:6px;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="aspect-ratio:16/10;overflow:hidden;">
+          <img src="images/interieur-bizet-3.jpg" alt="Le Pizzaiole — Le Bizet" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="padding:clamp(26px,3vw,34px);display:flex;flex-direction:column;flex:1;">
+          <h3 style="margin:0;font-family:'Cormorant Garamond';font-weight:600;font-size:30px;color:#fff;">Le Bizet</h3>
+          <p style="margin:6px 0 0;font-family:Archivo;font-weight:500;font-size:14px;color:#c9c4b7;">Place du Marché · Belgique</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 22px;">
+            <span style="font-family:Archivo;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#d9d4c7;border:1px solid #423d34;border-radius:100px;padding:6px 12px;">Sur place</span>
+            <span style="font-family:Archivo;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#d9d4c7;border:1px solid #423d34;border-radius:100px;padding:6px 12px;">Terrasse &amp; bar</span>
+            <span style="font-family:Archivo;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#d9d4c7;border:1px solid #423d34;border-radius:100px;padding:6px 12px;">À emporter</span>
+            <span style="font-family:Archivo;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#d9d4c7;border:1px solid #423d34;border-radius:100px;padding:6px 12px;">Livraison</span>
+          </div>
+          <a href="tel:+3256944473" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:15px;color:#fff;margin-bottom:20px;" style-hover="color:#e0716b;">☎ +32 56 94 44 73</a>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;">
+            <a href="https://alezy.fr/shop/Le%20Bizet/LEPIZZAIOLE/b072947a-14cf-43e3-a11a-ac6b88c175fc" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:#C1352E;color:#fff;text-decoration:none;font-family:Archivo;font-weight:600;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;padding:12px 20px;border-radius:3px;" style-hover="background:#a62a24;">Commander</a>
+            <a href="https://bookings.zenchef.com/results?rid=372899&amp;pid=1001" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:#1E7A46;color:#fff;text-decoration:none;font-family:Archivo;font-weight:600;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;padding:12px 20px;border-radius:3px;" style-hover="background:#186237;">Réserver</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Pizzaiole+Place+du+March%C3%A9+Le+Bizet+Ploegsteert" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:transparent;color:#F4F0E7;text-decoration:none;font-family:Archivo;font-weight:600;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;padding:11px 18px;border-radius:3px;border:1.5px solid #4a453b;" style-hover="border-color:#F4F0E7;">Itinéraire</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comines -->
+      <div style="background:#211E17;border:1px solid #35312a;border-radius:6px;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="aspect-ratio:16/10;overflow:hidden;">
+          <img src="images/facade-comines.jpg" alt="Le Pizzaiole — Comines" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+        </div>
+        <div style="padding:clamp(26px,3vw,34px);display:flex;flex-direction:column;flex:1;">
+          <h3 style="margin:0;font-family:'Cormorant Garamond';font-weight:600;font-size:30px;color:#fff;">Comines</h3>
+          <p style="margin:6px 0 0;font-family:Archivo;font-weight:500;font-size:14px;color:#c9c4b7;">11 Place Sainte-Anne · Belgique</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 22px;">
+            <span style="font-family:Archivo;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#d9d4c7;border:1px solid #423d34;border-radius:100px;padding:6px 12px;">À emporter</span>
+            <span style="font-family:Archivo;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#d9d4c7;border:1px solid #423d34;border-radius:100px;padding:6px 12px;">Terrasse</span>
+            <span style="font-family:Archivo;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#d9d4c7;border:1px solid #423d34;border-radius:100px;padding:6px 12px;">Livraison</span>
+          </div>
+          <a href="tel:+3256343405" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:15px;color:#fff;margin-bottom:20px;" style-hover="color:#e0716b;">☎ +32 56 34 34 05</a>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;">
+            <a href="https://alezy.be/shop/Comines/LEPIZZAIOLE/fef1c2cf-d31f-4510-b951-d612105da28b" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:#C1352E;color:#fff;text-decoration:none;font-family:Archivo;font-weight:600;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;padding:12px 20px;border-radius:3px;" style-hover="background:#a62a24;">Commander</a>
+            <a href="tel:+3256343405" style="display:inline-flex;align-items:center;background:transparent;color:#F4F0E7;text-decoration:none;font-family:Archivo;font-weight:600;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;padding:11px 18px;border-radius:3px;border:1.5px solid #4a453b;" style-hover="border-color:#F4F0E7;">Appeler</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Pizzaiole+11+Place+Sainte-Anne+Comines" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:transparent;color:#F4F0E7;text-decoration:none;font-family:Archivo;font-weight:600;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;padding:11px 18px;border-radius:3px;border:1.5px solid #4a453b;" style-hover="border-color:#F4F0E7;">Itinéraire</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRAITEUR 24 ===================== -->
+<section id="traiteur" style="scroll-margin-top:82px;padding:clamp(70px,9vw,120px) 24px;">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,72px);align-items:center;">
+    <div style="flex:1 1 340px;min-width:290px;display:flex;gap:16px;">
+      <div style="flex:1.4;border-radius:6px;overflow:hidden;box-shadow:0 26px 52px -30px rgba(23,21,15,0.5);">
+        <img src="images/distributeur.webp" alt="Distributeur Traiteur 24" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;border-radius:6px;overflow:hidden;box-shadow:0 26px 52px -30px rgba(23,21,15,0.5);">
+        <img src="images/distributeur-interieur.webp" alt="Plats et desserts du distributeur" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+    <div style="flex:1 1 380px;min-width:290px;">
+      <p style="margin:0 0 16px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:#C1352E;">24h / 24 · Le Bizet</p>
+      <h2 style="margin:0;font-family:'Cormorant Garamond';font-weight:600;font-size:clamp(32px,4.5vw,50px);line-height:1.04;color:#17150F;">Traiteur 24, <span style="font-style:italic;color:#1E7A46;">nos plats à toute heure.</span></h2>
+      <p style="margin:22px 0 0;max-width:480px;font-family:Archivo;font-weight:400;font-size:16px;line-height:1.62;color:#57534a;">Juste à côté du Bizet, notre distributeur automatique vous sert des plats traiteur, pâtes et desserts maison, même quand la pizzeria est fermée.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:26px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="width:7px;height:7px;background:#1E7A46;border-radius:50%;flex-shrink:0;"></span>
+          <span style="font-family:Archivo;font-weight:500;font-size:15px;color:#3a362e;">Disponible 24h/24, 7j/7</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="width:7px;height:7px;background:#C1352E;border-radius:50%;flex-shrink:0;"></span>
+          <span style="font-family:Archivo;font-weight:500;font-size:15px;color:#3a362e;">Plats traiteur, pâtes &amp; desserts maison</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="width:7px;height:7px;background:#1E7A46;border-radius:50%;flex-shrink:0;"></span>
+          <span style="font-family:Archivo;font-weight:500;font-size:15px;color:#3a362e;">Sur la Place du Marché, à côté de la pizzeria</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="contact" style="scroll-margin-top:82px;background:#141209;color:#c9c4b7;padding:clamp(56px,7vw,88px) 24px 34px;">
+  <div style="max-width:1180px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;padding-bottom:44px;border-bottom:1px solid #2c281f;">
+      <div style="flex:1 1 260px;min-width:240px;">
+        <div style="font-family:Archivo;font-weight:800;font-size:22px;letter-spacing:0.13em;color:#fff;"><span style="color:#e0716b;">LE</span> PIZZAIOLE</div>
+        <div style="display:flex;width:64px;height:5px;border-radius:2px;overflow:hidden;margin:14px 0 16px;">
+          <div style="flex:1;background:#1E7A46;"></div><div style="flex:1;background:#EDE7DB;"></div><div style="flex:1;background:#C1352E;"></div>
+        </div>
+        <p style="margin:0;max-width:280px;font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-size:19px;line-height:1.4;color:#a49f92;">« Pizzas artisanales cuites au feu de bois. »</p>
+      </div>
+
+      <div style="flex:1 1 215px;min-width:205px;">
+        <h4 style="margin:0 0 16px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#fff;">Le Bizet</h4>
+        <p style="margin:0 0 6px;font-family:Archivo;font-weight:400;font-size:14px;line-height:1.5;color:#a49f92;">Place du Marché<br>Belgique</p>
+        <a href="tel:+3256944473" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:14px;color:#e6e1d6;" style-hover="color:#e0716b;">+32 56 94 44 73</a>
+        <div style="margin-top:18px;">
+          <div style="font-family:Archivo;font-weight:700;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#e0716b;margin-bottom:9px;">Horaires</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="font-family:Archivo;font-size:12.5px;color:#8a8474;">Lun–Jeu</span><span style="font-family:Archivo;font-size:12.5px;color:#c9c4b7;white-space:nowrap;">12–14h · 18h30–22h</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="font-family:Archivo;font-size:12.5px;color:#8a8474;">Ven–Sam</span><span style="font-family:Archivo;font-size:12.5px;color:#c9c4b7;white-space:nowrap;">12–14h · 18h30–22h30</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="font-family:Archivo;font-size:12.5px;color:#8a8474;">Dim</span><span style="font-family:Archivo;font-size:12.5px;color:#c9c4b7;white-space:nowrap;">12–14h · 18h30–22h</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1 1 215px;min-width:205px;">
+        <h4 style="margin:0 0 16px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#fff;">Comines</h4>
+        <p style="margin:0 0 6px;font-family:Archivo;font-weight:400;font-size:14px;line-height:1.5;color:#a49f92;">11 Place Sainte-Anne<br>Belgique</p>
+        <a href="tel:+3256343405" style="text-decoration:none;font-family:Archivo;font-weight:600;font-size:14px;color:#e6e1d6;" style-hover="color:#e0716b;">+32 56 34 34 05</a>
+        <div style="margin-top:18px;">
+          <div style="font-family:Archivo;font-weight:700;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#e0716b;margin-bottom:9px;">Horaires</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="font-family:Archivo;font-size:12.5px;color:#8a8474;">Lundi</span><span style="font-family:Archivo;font-size:12.5px;color:#c9c4b7;white-space:nowrap;">Fermé</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="font-family:Archivo;font-size:12.5px;color:#8a8474;">Mardi</span><span style="font-family:Archivo;font-size:12.5px;color:#c9c4b7;white-space:nowrap;">18h30–22h</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="font-family:Archivo;font-size:12.5px;color:#8a8474;">Mercredi</span><span style="font-family:Archivo;font-size:12.5px;color:#c9c4b7;white-space:nowrap;">12–14h · 18h30–22h</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="font-family:Archivo;font-size:12.5px;color:#8a8474;">Jeudi</span><span style="font-family:Archivo;font-size:12.5px;color:#c9c4b7;white-space:nowrap;">18h30–22h</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="font-family:Archivo;font-size:12.5px;color:#8a8474;">Ven–Sam</span><span style="font-family:Archivo;font-size:12.5px;color:#c9c4b7;white-space:nowrap;">12–14h · 18h30–22h30</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="font-family:Archivo;font-size:12.5px;color:#8a8474;">Dimanche</span><span style="font-family:Archivo;font-size:12.5px;color:#c9c4b7;white-space:nowrap;">12–14h · 18h30–22h</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1 1 190px;min-width:180px;">
+        <h4 style="margin:0 0 16px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#fff;">Commander &amp; réserver</h4>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <a href="https://alezy.fr/shop/Le%20Bizet/LEPIZZAIOLE/b072947a-14cf-43e3-a11a-ac6b88c175fc" target="_blank" rel="noopener" style="text-decoration:none;font-family:Archivo;font-weight:500;font-size:14px;color:#a49f92;" style-hover="color:#fff;">Commander — Le Bizet</a>
+          <a href="https://alezy.be/shop/Comines/LEPIZZAIOLE/fef1c2cf-d31f-4510-b951-d612105da28b" target="_blank" rel="noopener" style="text-decoration:none;font-family:Archivo;font-weight:500;font-size:14px;color:#a49f92;" style-hover="color:#fff;">Commander — Comines</a>
+          <a href="https://bookings.zenchef.com/results?rid=372899&amp;pid=1001" target="_blank" rel="noopener" style="text-decoration:none;font-family:Archivo;font-weight:500;font-size:14px;color:#a49f92;" style-hover="color:#fff;">Réserver une table</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:24px;">
+      <span style="font-family:Archivo;font-weight:400;font-size:12.5px;color:#7c7768;">© 2025 Le Pizzaiole · Tous droits réservés</span>
+      <span style="font-family:Archivo;font-weight:600;font-size:12.5px;letter-spacing:0.04em;color:#a49f92;">lepizzaiole.be</span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  toggle = () => this.setState(s => ({ menuOpen: !s.menuOpen }));
+  close = () => this.setState({ menuOpen: false });
+  renderVals() {
+    const open = this.state.menuOpen;
+    return {
+      toggleMenu: this.toggle,
+      closeMenu: this.close,
+      mobileMenuStyle: {
+        display: open ? 'flex' : 'none',
+        flexDirection: 'column',
+        padding: '6px 24px 20px',
+        borderTop: '1px solid #E7E2D8',
+        background: 'rgba(251,249,245,0.98)',
+        backdropFilter: 'blur(12px)'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
